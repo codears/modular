@@ -1,0 +1,66 @@
+﻿<div ng-class="vmc.isRequired ? 'required' : ''" class="form-group {{vmc.widthFormGroup ? 'col-md-' + vmc.widthFormGroup : ''}}">
+    <label class="control-label {{vmc.widthControlLabel ? 'col-md-' + vmc.widthControlLabel : ''}}">{{vmc.label}}</label>
+
+    <div>
+        <div class="input-group {{vmc.widthInputGroup ? 'col-md-' + vmc.widthInputGroup : ''}}">
+            <input ng-model="vmc.displayName" ng-required="vmc.isRequired" name="{{vmc.label}}" disabled class="form-control">
+
+            <span class="input-group-btn">
+                <button ng-disabled="vmc.isDisabled" ng-click="vmc.showDialog()" type="button" class="btn btn-primary"><i class="fa fa-search"></i> Abrir</button>
+            </span>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL USERS -->
+<div class="modal fade" id="{{vmc.modalId}}" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg width-60">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <label class="control-label">Nome: </label>
+                        <div class="input-group">
+                            <input ng-model="vmc.contato.nome" ng-minlength="3" id="nomeContatoForm" ng-max-length="40" class="form-control" autofocus>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label class="control-label">Telefone: </label>
+                        <div class="input-group">
+                            <!--<input ng-model="vmc.contato.telefone" require ng-pattern="^\(?[1-9]{2}\)? ?(?:[2-8]|9[1-9])[0-9]{3}\-?[0-9]{4}$">-->
+
+                            <input id="inputPhone"
+                                   ng-model="vmc.contato.telefone"
+                                   ng-pattern="/^\(?[1-9]{2}\)? ?(?:[2-8]|9[1-9])[0-9]{3}\-?[0-9]{4}$/"
+                                   ng-required="true" 
+                                   ui-br-phone-number-mask="areaCode" />
+                            <div class="bg-danger p-xs b-r-sm"
+                                 ng-show="!vmc.validarTelefone(vmc.contato.telefone, vmc.contato.tipoTelefone==3)">
+                                escreva um telefone válido
+                            </div>
+                        </div>
+                        <div class="col=md-4">
+                            <label class="control-label">Tipo: </label>
+                            <div class="input-group">
+                                <select ng-model="vmc.contato.tipoTelefone" ng-options="item.id as item.label for item in vmc.tiposTelefone" id="tipoTelefoneContatoForm" class="form-control"></select>
+                            </div>
+                        </div>
+                        <div class="col=md-2">
+                            <label class="control-label">Conf: </label>
+                            <div class="input-group">
+                                <input type="checkbox" ng-model="vmc.confirmacao" ng-minlength="3" id="chkConfirmacaoEnvioMensagemContatoForm" ng-checked="vmc.confirmacaoEnvioMensagem" ng-disabled="vmc.indicaConfirmacaoEfetuada != 'S'" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+
+                <div class="modal-footer">
+                    <button type="button" class="btn" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -2,37 +2,41 @@
 
     'use strict';
 
-    function contatoController() {
+    function selectUserController() {
 
-        var self = this;       
+        var self = this;
 
         self.isSearched = false;
-        self.tiposTelefone = [
-            { label: '[selecione]' },
-            { id: 3, label: 'celular' },
-            { id: 2, label: 'comercial' },
-            { id: 1, label: 'residencial' }
-        ];
 
-       
         self.showDialog = function () {
             var modal = '#' + self.modalId;
-            
+
             $(modal).on('shown.bs.modal', function () {
                
                 $('#' + self.inputSearchId).focus();
             });
 
             $(modal).modal('show');
-        };      
+        };
 
-        self.validarTelefone = function ($phone, tipoCelular) {
-         
-            if (tipoCelular)
-                return new RegExp(/^\(?[1-9]{2}\)? ?(:[2-8]|9[1-9])[0-9]{3}\-?[0-9]{4}$/).test($phone);
-                      
-            return new RegExp(/^\(?[1-9]{2}\)? ?([1-9])[0-9]{3}\-?[0-9]{4}$/).test($phone);
-        }      
+        self.searchUser = function () {
+            if (self.userInput && self.userInput.length >= 3) {
+                
+            }
+        };
+
+        self.selectUser = function (user) {
+            self.adid = user.ad_id;
+            self.userId = user.user_id;
+            self.displayName = user.display_name;
+            self.nolsAccount = user.nols_account
+
+            if (self.callback) {
+                self.callback({ user: user });
+            }
+
+            $('#' + self.modalId).modal('hide');
+        };
 
         self.hitEnter = function (keyEvent) {
             if (keyEvent.which === 13) {
@@ -42,7 +46,8 @@
 
         self.$onInit = function () {
             var uuid = uuidv4();
-            self.modalId = 'modalSelectUser' + uuid;           
+            self.modalId = 'modalSelectUser' + uuid;
+            self.inputSearchId = 'inputSearchUser' + uuid;
         };
 
         function uuidv4() {
@@ -60,11 +65,11 @@
 
     angular
         .module(MY_APP_NAME)
-        .controller('contatoController', [contatoController])
-        .component('contatoComponent', {
+        .controller('selectUserController', [selectUserController])
+        .component('selectUserComponent', {
 
-            controller: 'contatoController as vmc',
-            templateUrl: 'views/contato.component.html',            
+            controller: 'selectUserController as vmc',
+            templateUrl: 'views/select-user-component.html',            
             bindings: {
                 label: '@',
                 adid: '=',
@@ -76,8 +81,7 @@
                 widthFormGroup: '@',
                 widthControlLabel: '@',
                 widthInputGroup: '@',
-                isDisabled: '=',
-                contato: '='
+                isDisabled: '='
             }
         });
 
