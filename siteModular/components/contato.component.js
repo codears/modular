@@ -13,7 +13,6 @@
             { id: 2, label: 'comercial' },
             { id: 1, label: 'residencial' }
         ];
-
        
         self.showDialog = function () {
             var modal = '#' + self.modalId;
@@ -26,9 +25,9 @@
             $(modal).modal('show');
         };      
 
-        self.validarTelefone = function ($phone, tipoCelular) {
+        self.validarTelefone = function ($phone) {
          
-            if (tipoCelular)
+            if (self.contato.tipoTelefone==3)
                 return new RegExp(/^\(?[1-9]{2}\)? ?(:[2-8]|9[1-9])[0-9]{3}\-?[0-9]{4}$/).test($phone);
                       
             return new RegExp(/^\(?[1-9]{2}\)? ?([1-9])[0-9]{3}\-?[0-9]{4}$/).test($phone);
@@ -77,7 +76,8 @@
                 widthControlLabel: '@',
                 widthInputGroup: '@',
                 isDisabled: '=',
-                contato: '='
+                contato: '=',
+                indice: '='
             }
         });
 

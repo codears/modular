@@ -26,18 +26,23 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-2">
+                        indice: {{vmc.indice}}<br />
+                        nome: {{vmc.contato.nome}}<br />
+                        telefone: {{vmc.contato.telefone}}<br />
+                        tipo: {{vmc.contato.tipoTelefone}}<br />
+                    </div>
+                    <div class="col-md-4">
                         <label class="control-label">Telefone: </label>
                         <div class="input-group">
-                            <!--<input ng-model="vmc.contato.telefone" require ng-pattern="^\(?[1-9]{2}\)? ?(?:[2-8]|9[1-9])[0-9]{3}\-?[0-9]{4}$">-->
-
+                            
                             <input id="inputPhone"
                                    ng-model="vmc.contato.telefone"
                                    ng-pattern="/^\(?[1-9]{2}\)? ?(?:[2-8]|9[1-9])[0-9]{3}\-?[0-9]{4}$/"
-                                   ng-required="true" 
-                                   ui-br-phone-number-mask="areaCode" />
+                                   ng-required="true"
+                                   ui-br-phone-number="areaCode" />
                             <div class="bg-danger p-xs b-r-sm"
-                                 ng-show="!vmc.validarTelefone(vmc.contato.telefone, vmc.contato.tipoTelefone==3)">
+                                 ng-show="!vmc.validarTelefone(vmc.contato.telefone, vmc.contato.tipoTelefone)">
                                 escreva um telefone válido
                             </div>
                         </div>

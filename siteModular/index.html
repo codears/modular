@@ -33,20 +33,24 @@
                 </div>
 
                 <div class="ibox-content">
-                    <div class="col-md-3"></div>
-                    <div class="col-md-3">
-                        nome: {{vm.contato.nome}}<br />
-                        telefone: {{vm.contato.telefone}}<br />
-                        tipo: {{vm.contato.tipoTelefone}}<br />
-                        <input type="text" name="field" ng-model="vm.contato.telefone" ui-br-phone-number-mask="areaCode" input-mas />
+                    <div ng-repeat="contato in vm.contatos track by $index">
+                        <div class="col-md-3"></div>
+                        <div class="col-md-3">
+                            indice: {{$index}}<br />
+                            nome: {{contato.nome}}<br />
+                            telefone: {{contato.telefone}}<br />
+                            tipo: {{contato.tipoTelefone}}<br />
+                            <input type="text" name="field" ng-model="contato.telefone" ui-br-phone-number="areaCode" />
+                        </div>
+                        <div class="col-md-3">
+                            <contato-component modal-id="modalAUT" label="AUT Owner" adid="adid" display-name="vm.display_name"
+                                               is-required="true" is-disabled="false" width-form-group="40" contato="contato" indice="$index"></contato-component>
+                        </div>
                     </div>
                     <div class="col-md-3">
                         <div ng-include src="'views/teste.html'"></div>
                     </div>
-                    <div class="col-md-3">
-                        <contato-component modal-id="modalAUT" label="AUT Owner" adid="adid" display-name="vm.display_name"
-                                           is-required="true" is-disabled="false" width-form-group="40" contato="vm.contato"></contato-component>
-                    </div>
+                    
                 </div>
             </div>
         </div>
