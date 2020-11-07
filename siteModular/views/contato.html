@@ -1,0 +1,94 @@
+﻿<!--<div class="modal fade" id="contatoModal" visible="showModal">
+    <h1>CONTATO IMEDIATO</h1>
+</div>
+
+<div class="modal" modal="showModal" ng-show="showModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                hehehehehehe
+            </div>
+        </div>
+    </div>
+</div>-->
+
+<div ng-class="vmc.isRequired ? 'required' : ''" class="form-group {{vmc.widthFormGroup ? 'col-md-' + vmc.widthFormGroup : ''}}">
+    <label class="control-label {{vmc.widthControlLabel ? 'col-md-' + vmc.widthControlLabel : ''}}">{{vmc.label}}</label>
+
+    <div>
+        <div class="input-group {{vmc.widthInputGroup ? 'col-md-' + vmc.widthInputGroup : ''}}">
+            <input ng-model="vmc.displayName" ng-required="vmc.isRequired" name="{{vmc.label}}" disabled class="form-control">
+
+            <span class="input-group-btn">
+                <button ng-disabled="vmc.isDisabled" ng-click="vmc.showDialog()" type="button" class="btn btn-primary"><i class="fa fa-search"></i> Search</button>
+            </span>
+        </div>
+    </div>
+
+</div>
+
+<!-- MODAL USERS -->
+<div class="modal fade" id="{{vmc.modalId}}" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg width-60">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="form-group" style="padding-bottom: 20px">
+                    <label class="control-label">User Name or Email</label>
+                    <div>
+                        <div class="input-group">
+                            <input ng-model="vmc.userInput" ng-minlength="3" ng-keypress="vmc.hitEnter($event)" id="{{vmc.inputSearchId}}" class="form-control" autofocus>
+                            <span class="input-group-btn">
+                                <button ng-click="vmc.searchUser()" ng-disabled="(! vmc.userInput) || (vmc.userInput.length < 3)" type="button" class="btn btn-primary">Search</button>
+                            </span>
+                        </div>
+                        <span class="help-block m-b-none"><small>Please enter at least 3 characters of the user name or email in order to search.</small></span>
+                    </div>
+                </div>
+
+                <div ng-if="vmc.isSearched && ! vmc.availableUsers || vmc.availableUsers.length == 0">
+                    <div class="bg-danger p-xs b-r-sm"><small>No user found. Please enhance your keywords.</small></div>
+                </div>
+
+                <div ng-if="vmc.availableUsers.length > 0">
+                    <div class="bg-primary p-xs b-r-sm"><small>* Only top 10 results are shown. Please enhance your keywords if you don't find the correct user.</small></div>
+
+                    <table class="table table-striped table-bordered table-full ">
+                        <thead>
+                            <tr>
+                                <th>Display Name</th>
+                                <th>NOLS</th>
+                                <th>AD ID</th>
+                                <th>Email</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="user in vmc.availableUsers | orderBy: 'display_name'">
+                                <td>{{user.display_name}}</td>
+
+                                <td class="text-center" ng-switch="user.nols_account">
+                                    <span ng-switch-when="true" class="badge badge-primary">Yes</span>
+                                    <span ng-switch-when="false" class="badge">No</span>
+                                </td>
+
+                                <td>{{user.ad_id}}</td>
+                                <td>{{user.work_email}}</td>
+
+                                <td class="text-center">
+                                    <a ng-click="vmc.selectUser(user)" class="btn btn-success btn-xs">
+                                        <i class="fa fa-check"></i> Select
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
