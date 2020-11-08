@@ -1,0 +1,27 @@
+<div class="row" ng-controller="contatoController as vm">
+    <div class="col-md-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>Contatos</h5>
+            </div>
+
+            <div class="">
+                <div ng-repeat="contato in vm.contatos track by $index">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-5">
+                        indice:     {{$index}}              <br />
+                        nome:       {{contato.nome}}        <br />
+                        telefone:   {{contato.telefone}}    <br />
+                        tipo:       {{contato.tipoTelefone}}<br />
+                        <input type="text" ng-model="contato.telefone" ui-br-phone-number="areaCode" />
+                    </div>
+                    <div class="col-md-1"></div>
+                    <div class="col-md-5">
+                        <contato-component modal-id="modalAUT" label="AUT Owner" adid="adid" display-name="vm.display_name"
+                                           is-required="true" is-disabled="false" width-form-group="40" contato="contato" indice="$index"></contato-component>
+                    </div>
+                </div>
+                </div>
+        </div>
+    </div>
+</div>

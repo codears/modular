@@ -13,46 +13,24 @@
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
     <script src="js/app.js"></script>
     <script src="scripts/input-masks/angular-input-masks-standalone.min.js"></script>
-    <script src="controllers/home.controller.js"></script>
+    <script src="controllers/contato.controller.js"></script>
+    <script src="controllers/home.controller.js"></script>    
     <script src="services/teste.service.js"></script>
     <script src="components/contato.component.js"></script>
     <link href="Content/bootstrap.min.css" rel="stylesheet" />
     <link href="Content/bootstrap-grid.css" rel="stylesheet" />
     <title></title>
 </head>
-<body ng-controller="homeController as vm" class="{{containerClass}}">
+<body>
 
     <!-- Main view -->
     <div ui-view></div>
-
-    <div class="row">
-        <div class="col-md-12">
-            <div class="ibox float-e-margins">
-                <div class="ibox-title">
-                    <h5>Contatos</h5>
-                </div>
-
-                <div class="ibox-content">
-                    <div ng-repeat="contato in vm.contatos track by $index">
-                        <div class="col-md-3"></div>
-                        <div class="col-md-3">
-                            indice: {{$index}}<br />
-                            nome: {{contato.nome}}<br />
-                            telefone: {{contato.telefone}}<br />
-                            tipo: {{contato.tipoTelefone}}<br />
-                            <input type="text" name="field" ng-model="contato.telefone" ui-br-phone-number="areaCode" />
-                        </div>
-                        <div class="col-md-3">
-                            <contato-component modal-id="modalAUT" label="AUT Owner" adid="adid" display-name="vm.display_name"
-                                               is-required="true" is-disabled="false" width-form-group="40" contato="contato" indice="$index"></contato-component>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div ng-include src="'views/teste.html'"></div>
-                    </div>
-                    
-                </div>
-            </div>
+    <div class="row">        
+        <div class="col-md-6">
+            <div ng-include src="'views/contato.html'"></div>
+        </div>
+        <div class="col-md-6">
+            <div ng-include src="'views/teste.html'"></div>
         </div>
     </div>
 </body>

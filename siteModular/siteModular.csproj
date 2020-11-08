@@ -74,6 +74,7 @@
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="controllers\contato.controller.js" />
     <Content Include="controllers\home.controller.js" />
     <Content Include="js\app.js" />
     <Content Include="scripts\bootstrap.bundle.js" />
@@ -960,6 +961,7 @@
     <Content Include="scripts\test-bundles\angular-sanitize.js" />
     <Content Include="scripts\test-bundles\angular-touch.js" />
     <Content Include="views\contato.component.html" />
+    <Content Include="views\contato.html" />
     <Content Include="views\selectUser.component.html" />
     <Content Include="views\teste.html" />
     <Content Include="views\usuario.html" />

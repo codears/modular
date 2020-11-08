@@ -25,17 +25,10 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-md-2">
-                        indice: {{vmc.indice}}<br />
-                        nome: {{vmc.contato.nome}}<br />
-                        telefone: {{vmc.contato.telefone}}<br />
-                        tipo: {{vmc.contato.tipoTelefone}}<br />
-                    </div>
+                <div class="row">                    
                     <div class="col-md-4">
                         <label class="control-label">Telefone: </label>
-                        <div class="input-group">
-                            
+                        <div class="input-group">                            
                             <input id="inputPhone"
                                    ng-model="vmc.contato.telefone"
                                    ng-pattern="/^\(?[1-9]{2}\)? ?(?:[2-8]|9[1-9])[0-9]{3}\-?[0-9]{4}$/"

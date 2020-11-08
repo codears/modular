@@ -2,7 +2,7 @@
 
     'use strict';
 
-    function contatoController() {
+    function contatoModalController() {
 
         var self = this;       
 
@@ -25,9 +25,11 @@
             $(modal).modal('show');
         };      
 
-        self.validarTelefone = function ($phone) {
-         
-            if (self.contato.tipoTelefone==3)
+        self.validarTelefone = function ($phone, tipoTelefone) {
+
+            if (!$phone || !tipoTelefone) return;
+
+            if (tipoTelefone==3)
                 return new RegExp(/^\(?[1-9]{2}\)? ?(:[2-8]|9[1-9])[0-9]{3}\-?[0-9]{4}$/).test($phone);
                       
             return new RegExp(/^\(?[1-9]{2}\)? ?([1-9])[0-9]{3}\-?[0-9]{4}$/).test($phone);
@@ -59,10 +61,10 @@
 
     angular
         .module(MY_APP_NAME)
-        .controller('contatoController', [contatoController])
+        .controller('contatoModalController', [contatoModalController])
         .component('contatoComponent', {
 
-            controller: 'contatoController as vmc',
+            controller: 'contatoModalController as vmc',
             templateUrl: 'views/contato.component.html',            
             bindings: {
                 label: '@',

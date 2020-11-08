@@ -6,9 +6,6 @@
         vm.diaSemana = 6;
         vm.name = testeService.name;
         vm.diasSemana = testeService.diasSemana;
-        vm.contatos = [
-            { nome: 'arley', idade: 40, telefone: '3133962971', tipoTelefone: 1 },
-            { nome: 'bruna', idade: 34, telefone: '31997566055', tipoTelefone: 3 }];
         vm.nome = 'teste';
         vm.adid = '001';        
     });
